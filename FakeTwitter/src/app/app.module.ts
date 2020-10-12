@@ -11,13 +11,15 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
 import { TweetsListComponent } from './tweets-list/tweets-list.component';
-
+import { TweetComponent } from './tweet/tweet.component';
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TweetsListComponent
+    TweetsListComponent,
+    TweetComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +27,7 @@ import { TweetsListComponent } from './tweets-list/tweets-list.component';
     BrowserAnimationsModule,
     MatIconModule,
     MatToolbarModule,
-    
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

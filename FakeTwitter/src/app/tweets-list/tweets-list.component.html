@@ -1,1 +1,5 @@
-{{ listTweets | json }}
+
+<div *ngFor='let tweet of listTweets'>
+    <app-tweet [tweet] = "tweet"></app-tweet>
+    <hr>
+</div>
