@@ -13,13 +13,15 @@ import {MatIconModule} from '@angular/material/icon';
 import { TweetsListComponent } from './tweets-list/tweets-list.component';
 import { TweetComponent } from './tweet/tweet.component';
 import {MatCardModule} from '@angular/material/card';
-
+import { CreateTweetComponent } from './create-tweet/create-tweet.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     TweetsListComponent,
-    TweetComponent
+    TweetComponent,
+    CreateTweetComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +29,8 @@ import {MatCardModule} from '@angular/material/card';
     BrowserAnimationsModule,
     MatIconModule,
     MatToolbarModule,
-    MatCardModule
+    MatCardModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
