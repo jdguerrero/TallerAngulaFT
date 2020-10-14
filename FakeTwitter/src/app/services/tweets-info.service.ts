@@ -20,7 +20,6 @@ export class TweetsInfoService {
 
     this.listTweets = new Array <Tweet> ();
 
-    this.getTweets();
 
   }
 
