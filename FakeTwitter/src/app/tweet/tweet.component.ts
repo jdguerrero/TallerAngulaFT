@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Tweet } from 'src/models/tweet.model';
 
+import { TweetsInfoService } from '../services/tweets-info.service';
+
 @Component({
   selector: 'app-tweet',
   templateUrl: './tweet.component.html',
@@ -10,16 +12,14 @@ export class TweetComponent implements OnInit {
 
   @Input()
 
-  tweet: Tweet;
+  tweets;
 
-  constructor() {
-
-    this.tweet = new Tweet();
-
+  constructor(private tweetService: TweetsInfoService) {
 
   }
 
   ngOnInit(): void {
+    this.tweets = this.tweetService.getTweets();
   }
 
 }
