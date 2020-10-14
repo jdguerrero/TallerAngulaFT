@@ -8,9 +8,9 @@ export class Tweet {
 
     device: string;
 
-    author: string;
-
     location: string;
+
+    idUser: number;
 
     constructor (idTweet?: number){
         this.idTweet = idTweet;

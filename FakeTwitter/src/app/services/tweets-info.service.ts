@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Tweet } from 'src/models/tweet.model';
+
+
 
 
 @Injectable({
@@ -9,46 +12,63 @@ export class TweetsInfoService {
 
   listTweets: Array<Tweet>;
 
-  constructor() {
+  urlApiTweets: string;
+
+  constructor(private http: HttpClient) {
+
+    this.urlApiTweets = "http://localhost:3000/tweets/";
+
     this.listTweets = new Array <Tweet> ();
+
+    this.getTweets();
+
+  }
+
+  private async request(method: string, url: string, data?: any) {
+    
+    url = this.urlApiTweets
+    console.log('request ' + JSON.stringify(data));
+    const result = this.http.request(method, url, {
+      body: data,
+      responseType: 'json',
+      observe: 'body'
+    });
+    return new Promise<any>((resolve, reject) => {
+      result.subscribe(resolve as any, reject as any);
+    });
   }
 
   createTweet(newTweet: Tweet){
-    this.listTweets.push(newTweet);
+    return this.request('post', this.urlApiTweets, newTweet);
   }
 
-  getTweets(): Array <Tweet> {
+  getTweets() {
 
-    let tweet = new Tweet();
-    tweet.author = "Juan";
-    tweet.idTweet = 1;
-    tweet.location = "Bogotá";
-    tweet.device = "Android";
-    tweet.date = new Date();
-    tweet.text = "Hello world, its my first tweet on fakeTwitter";
+    const tweetsJson = (this.request('get', this.urlApiTweets));
 
-    let tweet2 = new Tweet();
-    tweet2.author = "David";
-    tweet2.idTweet = 2;
-    tweet2.location = "Bogotá";
-    tweet2.device = "Pc";
-    tweet2.date = new Date();
-    tweet2.text = "Hello world, its my second tweet on fakeTwitter, but its a copy of other tweet D:";
+    const tweets = tweetsJson["data"];
 
-    let tweet3 = new Tweet();
-    tweet3.author = "Julio";
-    tweet3.idTweet = 2;
-    tweet3.location = "Bogotá";
-    tweet3.device = "Pc";
-    tweet3.date = new Date();
-    tweet3.text = "Hello world, its my third tweet on fakeTwitter, but its a copy of other tweet D:";
+    for (let index = 0; index < tweets.length; index++) {
 
+      const newTweet: Tweet = new Tweet();
 
-    
-    this.listTweets.push(tweet2);
-    this.listTweets.push(tweet3);
+      newTweet.idTweet = tweets["idTweet"][index];
+
+      newTweet.text = tweets["text"][index];
+
+      newTweet.date = tweets["date"][index];
+
+      newTweet.device = tweets["device"][index];
+
+      newTweet.location = tweets["location"][index];
+
+      newTweet.idUser = tweets["idUser"][index];
+      
+      this.listTweets.push(newTweet);
+
+    }
 
     return this.listTweets;
-
   }
+
 }
