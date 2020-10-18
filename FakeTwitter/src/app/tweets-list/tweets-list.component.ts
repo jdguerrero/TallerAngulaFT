@@ -12,17 +12,22 @@ export class TweetsListComponent implements OnInit {
   listTweets: Array<Tweet>;
 
   constructor(private tweetsInfoService: TweetsInfoService) {
-    this.listTweets = new Array <Tweet> ();
+    this.tweetsInfoService.getTweets().subscribe(Response=>{
+      
+      const tweetsJson = Response;
+
+      const tweets = tweetsJson["data"];
+
+      console.log(tweets)
+
+
+    });
+
+    
   }
 
   ngOnInit(): void {
-    this.fillListTweets();
-  }
-
-  fillListTweets(): void{
-
-    this.listTweets = this.tweetsInfoService.getTweets();
-
+    
   }
 
   

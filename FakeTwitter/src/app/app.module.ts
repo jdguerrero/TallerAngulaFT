@@ -15,7 +15,7 @@ import { TweetComponent } from './tweet/tweet.component';
 import {MatCardModule} from '@angular/material/card';
 import { CreateTweetComponent } from './create-tweet/create-tweet.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpHeaders} from '@angular/common/http';
 
 
 @NgModule({

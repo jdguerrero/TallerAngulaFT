@@ -11,9 +11,11 @@ export class CreateTweetComponent implements OnInit {
 
   newTweet: Tweet;
 
-  constructor(private tweetsInfoService: TweetsInfoService) {
+  constructor() {
 
     this.newTweet = new Tweet();
+
+    
 
   }
 
@@ -21,7 +23,7 @@ export class CreateTweetComponent implements OnInit {
   }
 
   createTweet(){
-    this.tweetsInfoService.createTweet(this.newTweet);
+    
   }
 
 }
