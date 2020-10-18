@@ -18,8 +18,6 @@ export class TweetsInfoService {
 
   getTweets() {
 
-    console.log("Soy get servicios y me llamaron");
-
     let headers = new HttpHeaders().set(
       'Type-Content','aplication/json'
     )
