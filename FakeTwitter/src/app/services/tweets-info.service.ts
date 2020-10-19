@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Tweet } from 'src/models/tweet.model';
-
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -16,7 +15,7 @@ export class TweetsInfoService {
     this._urlApiTweets = "/api/tweets/";
   }
 
-  getTweets() {
+  getTweets(): Observable <any> {
 
     let headers = new HttpHeaders().set(
       'Type-Content','aplication/json'
